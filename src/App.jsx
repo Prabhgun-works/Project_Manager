@@ -7,9 +7,10 @@ import NewProject from './components/NewProject';
 export default function App() {
     const[ projectsState ,setProjectsState] = useState({
       selectedProjectId: undefined,
-      projects : []
+      projects : [],
     });
 
+   
     function handleSelectProject(id){
       setProjectsState((prevState) =>{
         return{
@@ -25,7 +26,9 @@ export default function App() {
           ...prevState,
           selectedProjectId: null ,
         };
-      });}
+      });
+    }
+
       function handleMainAddproject(projectData){
         const projectId =  Math.random()
 
@@ -41,11 +44,19 @@ export default function App() {
           }
         })
       }
-    
+      function handleDelete(id){
+        setProjectsState(prevState =>{
+          return{
+            ...prevState,
+            selectedProjectId: undefined ,
+            projects : [...prevState.projects.filter
+              (project => project.id !== prevState.selectedProjectId)]
+      }}
+    )}
 
     console.log(projectsState);
-    const selectedProjectId = projectsState.selectedProjectId;
-     let content = <SelectedProject project={selectedProjectId}/>; 
+    const selectedProjectId = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
+     let content = <SelectedProject project={selectedProjectId} onDelete = {handleDelete}/>; 
 
      if(projectsState.selectedProjectId === null){
         content = <NewProject onAdd={handleMainAddproject}/>
@@ -54,11 +65,10 @@ export default function App() {
 
      }
   return (
-    <main className='h-screen my-8 flex gap-8'>
+    <main className='h-screen  bg-sky-50 flex gap-8'>
       <Sidebar 
         Change={handleSideAddProject}  
         projects = {projectsState.projects}
-
         onSelectProject = {handleSelectProject}/>
           {content}
     </main>
