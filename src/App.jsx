@@ -9,37 +9,43 @@ export default function App() {
       projects : []
     });
 
-    function handleAddProject(projectData){
+    function handleSideAddProject(){
       setProjectsState(prevState =>{
         return{
           ...prevState,
           selectedProjectId: null ,
         };
-      });
-      function handleAddproject(projectData){
+      });}
+      function handleMainAddproject(projectData){
+        const projectId =  Math.random()
+
         setProjectsState(prevState =>{
           const newProject ={
             ...projectData, 
-            id : Math.random()
+            id : projectId, 
           }
           return {
             ...prevState, 
+            selectedProjectId : undefined, 
             projects : [...prevState.projects , newProject], 
           }
         })
       }
-    }
+    
+
     console.log(projectsState);
      let content; 
+
      if(projectsState.selectedProjectId === null){
-      content = <NewProject onAdd={handleAddProject}/>
+        content = <NewProject onAdd={handleMainAddproject}/>
      }   else if(projectsState.selectedProjectId === undefined){
-        content = <NoProjectSelected Change = {handleAddProject}/>;
+        content = <NoProjectSelected onChange = {handleSideAddProject}/>;
 
      }
   return (
     <main className='h-screen my-8 flex gap-8'>
-      <Sidebar Change={handleAddProject}/>
+      <Sidebar Change={handleSideAddProject}  
+      projects = {projectsState.projects}/>
       {content}
     </main>
   )

@@ -21,7 +21,7 @@ export default function NewProject({onAdd}) {
       )
 
   }
-   
+  
   return (
     <div className='w-[35rem] mt-16'>
         <menu className='flex items-center justify-end gap-4  my-4 '>
@@ -30,9 +30,9 @@ export default function NewProject({onAdd}) {
             className='px-5 py-3 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950 '>Save</button></li>
         </menu>
         <div >
-         <Input ref={title}label="Title" />
+         <Input type="text"ref={title}label="Title" />
          <Input ref={description} label="Description" textarea/>
-         <Input ref= {dueDate} label="Due Date"/>
+         <Input type="date"ref= {dueDate} label="Due Date"/>
 
         </div>
     </div>
