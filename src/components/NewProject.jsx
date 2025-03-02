@@ -33,17 +33,17 @@ export default function NewProject({ onAdd }) {
     <>
         
       <Modal ref={modal} buttonCaption="Close">
-        <h2 className="font-4xl text-font-bold text-stone-700 my-4 '>No Project was Selected">
+        <h2 className="font-4xl text-font-bold text-sky-700 my-4 '>No Project was Selected">
           Invalid Input</h2>
 
-          <p className='text-stone-600 mb-4'>Please provide valid values!</p>
+          <p className='text-sky-600 mb-4'>Please provide valid values!</p>
       </Modal>
       <div className='w-[35rem] mt-16'>
         <menu className='flex items-center justify-end gap-4 my-4'>
-          <li><button className='text-stone-900 hover:text-stone-950'>Cancel</button></li>
+          <li><button className='text-sky-900 hover:text-sky-950'>Cancel</button></li>
           <li>
             <button onClick={handleSave}
-              className='px-5 py-3 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950'>
+              className='px-5 py-3 rounded-md bg-sky-800 text-sky-50 hover:bg-sky-950'>
               Save
             </button>
           </li>
